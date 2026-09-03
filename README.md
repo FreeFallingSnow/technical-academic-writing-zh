@@ -17,11 +17,23 @@
 本 skill 将写作规范作为交付门禁：
 
 - 先保护事实、范围、因果和证据强度，再处理表达；
-- 每句话必须增加信息、逻辑关系、必要边界或结构作用，否则删除；
+- 短文本逐句检查；长文只深查可疑词、可疑结构和段末句筛出的候选；
 - “可能”之后的同义免责声明、未检查范围的重复解释和修改过程说明必须删除；
 - 同一信息只能有一个主要落点，不得用近义改写代替删除；
 - 终稿必须通过八项检查后才能交付；
 - 正文前后不得添加“已优化”“修改如下”等编辑性包装。
+
+## 长文检索
+
+处理大段文字或多章节文稿时，skill 先做轻量筛选，再深度处理候选句：
+
+1. 用证据限定词、修改痕迹、否定词和总结词检索可疑句；
+2. 用主语变化、连接词堆叠、相邻复述和跨层级重复筛选可疑结构；
+3. 将每个段落的末句加入候选集合，并提高同时命中其他条件的末句优先级；
+4. 读取候选句的前后文和对应摘要或结论后，再决定删除、合并或重组；
+5. 修改后复检段末句和关联层级，没有新增高优先级候选后结束。
+
+完整检索表见 [`references/long-document-retrieval.md`](skills/technical-academic-writing-zh/references/long-document-retrieval.md)。
 
 ## 安装
 
@@ -156,8 +168,10 @@ $technical-academic-writing-zh 检查全文的重复限定、跨层级复述、�
 └── skills/
     └── technical-academic-writing-zh/
         ├── SKILL.md
-        └── agents/
-            └── openai.yaml
+        ├── agents/
+        │   └── openai.yaml
+        └── references/
+            └── long-document-retrieval.md
 ```
 
 ## 许可证

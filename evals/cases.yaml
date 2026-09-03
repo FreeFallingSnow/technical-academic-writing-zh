@@ -87,3 +87,41 @@ cases:
       - 第一段
       - 第二段其他句子
       - 其他章节
+
+  - id: paragraph-ending-priority
+    focus: 段落末句加强检索
+    input:
+      paragraph:
+        - 现有数据提示因素 A 可能影响结果。
+        - 受证据范围限制，这些数据仅支持存在影响的可能性。
+      next_paragraph_first_sentence: 后续分析采用相同数据范围。
+    must_flag:
+      - paragraph_sentence_2
+    expected_output:
+      paragraph:
+        - 现有数据提示因素 A 可能影响结果。
+    must_not_contain:
+      - 受证据范围限制
+      - 仅支持存在影响的可能性
+
+  - id: suspicious-structure-retrieval
+    focus: 可疑词与结构联合筛选
+    input:
+      - 参数 A 的设定值为 10。
+      - 根据审阅意见，本次修改后补充说明：参数 B 的设定值为 20。
+      - 在条件变化并且系统完成更新以后由于响应值下降因此触发报警。
+    must_flag:
+      - sentence_2
+      - sentence_3
+    trigger_reasons:
+      sentence_2:
+        - 修改过程词
+      sentence_3:
+        - 条件、过程、结果和多个连接词位于同一句
+
+  - id: keyword-is-not-deletion-rule
+    focus: 可疑词只定位候选
+    input: 设备运行期间不得打开防护盖。
+    must_flag_for_review: true
+    exact_output: 设备运行期间不得打开防护盖。
+    reason_to_keep: 否定表达构成安全禁令
