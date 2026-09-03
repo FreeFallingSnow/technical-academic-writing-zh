@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文技术与学术写作规范"
+  short_description: "在起草、修改和定稿中控制重复限定、过程痕迹、冗余否定和难读句"
+  default_prompt: "使用 $technical-academic-writing-zh 按统一规范起草、修改或审校这份中文技术与学术文稿。"

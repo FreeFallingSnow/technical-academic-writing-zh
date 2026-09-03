@@ -1,0 +1,71 @@
+cases:
+  - id: repeated-evidence-strength
+    focus: 证据强度只限定一次
+    input: >-
+      现有数据提示因素 A 可能影响结果。受证据范围限制，这些数据仅支持存在影响的可能性，不能确定影响程度。
+    expected_behavior:
+      - 删除对“可能影响结果”的重复限定
+      - 保留“不能确定影响程度”这一独立边界
+    must_preserve:
+      - 因素 A 的影响仅为可能性
+      - 无法据此确定影响程度
+
+  - id: revision-trace
+    focus: 不写入修改过程痕迹
+    input: >-
+      根据审阅意见，本次修改后补充说明：参数 A 的设定值为 10。
+    expected_behavior:
+      - 删除审阅和修改过程说明
+      - 直接陈述参数设定值
+    must_preserve:
+      - 参数 A 的设定值为 10
+
+  - id: meaningful-negative-result
+    focus: 保留有意义的否定
+    input: >-
+      本次检查未发现异常，现有结果不能代表未检查范围。
+    expected_behavior:
+      - 保留阴性观察结果
+      - 保留检查范围造成的证据边界
+    must_preserve:
+      - 本次检查未发现异常
+      - 结论不适用于未检查范围
+
+  - id: redundant-negative
+    focus: 精简否定性冗余
+    input: >-
+      该功能并非不能在离线状态下使用。
+    expected_behavior:
+      - 在逻辑范围一致时改为直接肯定表达
+    must_preserve:
+      - 该功能可以在离线状态下使用
+
+  - id: cross-level-duplication
+    focus: 跨层级去重
+    input: >-
+      正文已经说明方案 B 的结果高于方案 A，并给出数据和条件；结论再次完整复述相同数据、条件和推理。
+    expected_behavior:
+      - 正文保留完整依据
+      - 结论只保留最终判断和不可缺少的关键依据
+      - 不改变方案 B 高于方案 A 的判断
+
+  - id: hard-to-read-sentence
+    focus: 改写难读句
+    input: >-
+      在输入条件发生变化并且系统完成更新以后由于响应值随之下降因此在超过预设持续时间的情况下触发了报警这一结果说明当前设置需要进一步检查。
+    expected_behavior:
+      - 拆分或重组多个主要判断
+      - 明确条件、现象、结果和后续判断之间的关系
+    must_preserve:
+      - 输入条件先发生变化
+      - 系统完成更新
+      - 响应值下降并在超过预设持续时间后触发报警
+      - 当前设置需要进一步检查
+
+  - id: local-edit-scope
+    focus: 最小充分修改
+    input: >-
+      用户只要求改写第二段第一句，该句的修改不会影响术语、编号、引用或其他段落。
+    expected_behavior:
+      - 只改写指定句子
+      - 不扩展修改范围
