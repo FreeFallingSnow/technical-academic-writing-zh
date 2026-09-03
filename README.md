@@ -12,6 +12,17 @@
 
 所有规则都受语义保护约束。skill 要求保持事实、数字、术语、条件、因果方向和证据强度，不承担事实核查、文献检索或专业结论判断。
 
+## 约束方式
+
+本 skill 将写作规范作为交付门禁：
+
+- 先保护事实、范围、因果和证据强度，再处理表达；
+- 每句话必须增加信息、逻辑关系、必要边界或结构作用，否则删除；
+- “可能”之后的同义免责声明、未检查范围的重复解释和修改过程说明必须删除；
+- 同一信息只能有一个主要落点，不得用近义改写代替删除；
+- 终稿必须通过八项检查后才能交付；
+- 正文前后不得添加“已优化”“修改如下”等编辑性包装。
+
 ## 安装
 
 在 Codex 中调用内置的 `$skill-installer`：
@@ -33,7 +44,7 @@ $skill-installer install the skill from https://github.com/FreeFallingSnow/techn
 在起草阶段执行规范：
 
 ```text
-$technical-academic-writing-zh 根据以下材料起草正文。每项证据强度只限定一次，避免跨段重复和过程性说明：
+$technical-academic-writing-zh 根据以下材料起草正文。每项证据强度只限定一次，不得跨段重复或加入过程性说明：
 ……
 ```
 
@@ -132,7 +143,7 @@ $technical-academic-writing-zh 检查全文的重复限定、跨层级复述、�
 
 `SKILL.md` 已通过 Codex `skill-creator` 附带的 `quick_validate.py` 结构校验。
 
-[`evals/cases.yaml`](evals/cases.yaml) 收录通用测试输入、预期行为和必须保持的语义，用于回归评估。
+[`evals/cases.yaml`](evals/cases.yaml) 收录通用测试输入、精确预期输出、禁用表达和必须保持的语义，用于回归评估。
 
 ## 目录结构
 
