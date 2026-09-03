@@ -128,11 +128,11 @@ $technical-academic-writing-zh 检查全文的重复限定、跨层级复述、�
 
 拆分主要判断，并保持条件、现象、结果和后续判断的顺序。
 
-## 验证范围
+## 验证
 
-`SKILL.md` 使用 Codex `skill-creator` 附带的 `quick_validate.py` 检查格式、名称和 frontmatter。该检查只验证 skill 结构，不代表模型在所有文本上的写作效果。
+`SKILL.md` 已通过 Codex `skill-creator` 附带的 `quick_validate.py` 结构校验。
 
-[`evals/cases.yaml`](evals/cases.yaml) 记录了通用测试输入、预期行为和必须保持的语义，可用于后续回归评估；仓库不会在未实际运行评估时声明这些案例已经通过。
+[`evals/cases.yaml`](evals/cases.yaml) 收录通用测试输入、预期行为和必须保持的语义，用于回归评估。
 
 ## 目录结构
 
