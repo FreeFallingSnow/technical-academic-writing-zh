@@ -1,4 +1,4 @@
 interface:
   display_name: "中文技术与学术写作规范"
   short_description: "清理中文技术与学术文本，保留语义并标记需确认项"
-  default_prompt: "使用 $technical-academic-writing-zh 执行中文技术与学术写作规范。清理时直接完成确定项，将可能改变方法边界的内容保留并列为待确认项。"
+  default_prompt: "使用 $technical-academic-writing-zh 执行中文技术与学术写作规范。清理时只依据当前文档和直接关联材料判断，直接完成确定项，将无法判定的内容列为待确认项。"

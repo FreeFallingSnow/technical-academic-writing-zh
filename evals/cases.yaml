@@ -155,6 +155,26 @@ cases:
     must_not_contain_in_cleaned_text:
       - 未采用既有模型结果
 
+  - id: unrelated-context-does-not-create-source-relevance
+    focus: 对话记忆和无关项目文件不能建立对象关联
+    task: 清理以下正文，并给出清理清单和待确认项
+    input:
+      body: 参数 A 采用测量值。计算未采用既有模型结果。
+      conversation_context: 先前对话曾讨论既有模型。
+      unrelated_project_file: 另一个分析文件使用了既有模型结果。
+      direct_relationship_to_body: false
+    expected_output:
+      cleaned_text: 参数 A 采用测量值。
+      cleanup_summary:
+        - 删除当前文档及其直接关联材料均未定义的孤立数据源排除项
+      confirmation_items: []
+    must_not_use_as_relevance_evidence:
+      - 模型记忆
+      - 普通对话内容
+      - 未与当前文档直接关联的项目文件
+    must_not_contain_in_cleaned_text:
+      - 未采用既有模型结果
+
   - id: referenced-source-exclusion-is-method-boundary
     focus: 被排除对象具有其他技术作用时保留方法边界
     task: 清理以下正文，并给出清理清单和待确认项
