@@ -125,3 +125,51 @@ cases:
     must_flag_for_review: true
     exact_output: 设备运行期间不得打开防护盖。
     reason_to_keep: 否定表达构成安全禁令
+
+  - id: explicit-cleanup-safe-removal
+    focus: 显式清理时直接完成确定项
+    task: 清理以下文本，并给出清理清单和待确认项
+    input: >-
+      参数 A 采用测量值。根据本次修改要求，参数 A 已由估算值改为测量值。
+    expected_output:
+      cleaned_text: 参数 A 采用测量值。
+      cleanup_summary:
+        - 删除修改过程痕迹和对当前数据来源的重复说明
+      confirmation_items: []
+    must_not_contain_in_cleaned_text:
+      - 根据本次修改要求
+      - 已由估算值改为测量值
+
+  - id: ambiguous-source-exclusion-needs-confirmation
+    focus: 数据源排除含义不明时不得自动删除
+    task: 清理以下文本，并给出清理清单和待确认项
+    input: >-
+      参数 A 采用测量值。计算未采用既有模型结果。
+    expected_output:
+      cleaned_text: 参数 A 采用测量值。计算未采用既有模型结果。
+      cleanup_summary: []
+      confirmation_items:
+        - sentence: 计算未采用既有模型结果。
+          reason: 该句可能构成独立的数据源排除条件
+          options:
+            - 作为当前方法边界保留
+            - 移至变更记录
+            - 确认为无技术含义后删除
+    must_preserve:
+      - 未采用既有模型结果
+
+  - id: explicit-cleanup-report-separation
+    focus: 清理回执不得混入正文
+    task: 清理以下文本，并说明所做修改
+    input: >-
+      根据审阅意见，本次修改后补充说明：参数 A 的设定值为 10。
+    expected_output:
+      cleaned_text: 参数 A 的设定值为 10。
+      cleanup_summary:
+        - 删除审阅和修改过程痕迹
+      confirmation_items: []
+    must_not_contain_in_cleaned_text:
+      - 清理清单
+      - 待确认项
+      - 根据审阅意见
+      - 本次修改后

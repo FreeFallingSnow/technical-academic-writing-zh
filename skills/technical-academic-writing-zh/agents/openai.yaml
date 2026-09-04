@@ -1,4 +1,4 @@
 interface:
   display_name: "中文技术与学术写作规范"
-  short_description: "强制删除重复限定、过程痕迹、冗余否定和跨层级复述，重组难读句"
-  default_prompt: "使用 $technical-academic-writing-zh 强制执行中文技术与学术写作规范，保留事实与证据强度，只输出完成任务所需的内容。"
+  short_description: "清理中文技术与学术文本，保留语义并标记需确认项"
+  default_prompt: "使用 $technical-academic-writing-zh 执行中文技术与学术写作规范。清理时直接完成确定项，将可能改变方法边界的内容保留并列为待确认项。"

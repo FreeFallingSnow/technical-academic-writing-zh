@@ -35,6 +35,12 @@
 
 完整检索表见 [`references/long-document-retrieval.md`](skills/technical-academic-writing-zh/references/long-document-retrieval.md)。
 
+## 显式清理
+
+用户明确要求清理、精简或审校时，skill 会先完成不改变语义的确定项，再在正文之外给出清理清单。可能承载数据源排除、方法边界、适用范围、阴性结果或安全限制的句子会保持原样，并列入待确认项。
+
+例如，“参数 A 采用测量值”不能证明“模型结果未参与计算”。遇到这类排除性陈述时，skill 不会因为句子位于段末或命中可疑词就直接删除。判断与回执格式见 [`references/cleanup-review.md`](skills/technical-academic-writing-zh/references/cleanup-review.md)。
+
 ## 安装
 
 在 Codex 中调用内置的 `$skill-installer`：
@@ -171,6 +177,7 @@ $technical-academic-writing-zh 检查全文的重复限定、跨层级复述、�
         ├── agents/
         │   └── openai.yaml
         └── references/
+            ├── cleanup-review.md
             └── long-document-retrieval.md
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: technical-academic-writing-zh
-description: Enforce concise Chinese technical and academic writing throughout drafting, revision, and finalization. Remove repeated qualifications, duplicated conclusions, revision-process traces, redundant negative phrasing, and hard-to-read sentences while preserving facts, scope, causal direction, and evidence strength. Use for reports, papers, specifications, and analytical prose; do not use as a substitute for fact-checking or substantive analysis.
+description: Enforce concise Chinese technical and academic writing throughout drafting, revision, and finalization. Remove repeated qualifications, duplicated conclusions, revision-process traces, redundant negative phrasing, and hard-to-read sentences while preserving facts, scope, causal direction, and evidence strength. When cleanup is explicitly requested, apply safe edits and report completed changes and semantic-risk items requiring confirmation. Use for reports, papers, specifications, and analytical prose; do not use as a substitute for fact-checking or substantive analysis.
 ---
 
 # 中文技术与学术写作规范
@@ -33,6 +33,18 @@ description: Enforce concise Chinese technical and academic writing throughout d
 只重复相邻内容、换用近义词复述、解释已经表达的不确定性、说明修改过程或评价写作效果的句子必须删除。
 
 完成保留测试后再执行终检。不得把上述内部过程写入交付文本。
+
+## 显式清理请求
+
+用户明确要求“清理”“精简”“删除冗余”“去除修改痕迹”或“审校”时，进入可审计清理模式。必须先完成不改变语义的确定项，不得把所有删改都推迟到用户确认。
+
+- 上下文能够证明为重复、过程痕迹或逻辑等价改写的内容，直接删除、合并或重组；
+- 某句可能承载数据源排除、方法边界、条件例外、适用范围、阴性结果、安全限制或责任边界，而上下文不足以证明其冗余时，保留原句并列入待确认项；
+- 正面说明采用某一数据源，不等于已经说明其他数据源未参与。不得据此自动删除“未采用某数据源”等排除性陈述；
+- 可疑词、结构和段末位置只负责发现候选，不提高删除授权；
+- 用户明确要求只交付正文时，按用户指定省略清理回执。
+
+显式清理后，依次输出清理后的正文、清理清单和待确认项。待确认句在正文中保持原样；每个待确认项必须说明潜在技术含义并给出具体处理选项。短文本逐项列出实质修改，长文可合并同类修改，但必须保留可定位的信息。没有待确认项时写“待确认项：无”。具体格式与判断示例见 [references/cleanup-review.md](references/cleanup-review.md)。
 
 ## 长文问题句主动检索
 
@@ -172,5 +184,5 @@ description: Enforce concise Chinese technical and academic writing throughout d
 
 - 用户要求正文或终稿时，只输出可直接使用的文本，不加“已优化”“修改如下”“说明”等前言或后记。
 - 用户要求编辑文件时，只写入授权范围内的必要修改，保持标题层级、编号、图表题注、交叉引用和未涉及内容。
-- 用户要求审校报告时，才输出问题类型、原句、建议写法和理由。
-- 存在无法解决的歧义时，先交付不受影响的正文，再在正文外列出具体待确认项；不得用泛化免责声明代替判断。
+- 用户显式要求清理或审校时，按可审计清理模式输出正文、清理清单和待确认项，不得把清理说明写入正文。
+- 存在无法解决的歧义时，先交付已经完成确定项清理的正文，再在正文外列出具体待确认项；不得用泛化免责声明代替判断。
