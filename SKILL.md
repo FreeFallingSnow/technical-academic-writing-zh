@@ -1,6 +1,7 @@
 ---
 name: technical-academic-writing-zh
 description: Enforce concise Chinese technical and academic writing throughout drafting, revision, and finalization. Remove repeated qualifications, duplicated conclusions, revision-process traces, redundant negative phrasing, and hard-to-read sentences while preserving facts, scope, causal direction, and evidence strength. When cleanup is explicitly requested, apply safe edits and report completed changes and semantic-risk items requiring confirmation. Use for reports, papers, specifications, and analytical prose; do not use as a substitute for fact-checking or substantive analysis.
+license: MIT
 ---
 
 # 中文技术与学术写作规范

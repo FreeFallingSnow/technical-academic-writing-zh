@@ -1,6 +1,6 @@
 # 中文技术与学术写作规范
 
-`technical-academic-writing-zh` 是一个指令型 Codex skill，用于在中文技术与学术文稿的起草、修改和定稿过程中持续执行同一套表达规范。
+`technical-academic-writing-zh` 是一个遵循 [Agent Skills](https://agentskills.io/specification) 结构的指令型 skill，用于在中文技术与学术文稿的起草、修改和定稿过程中持续执行同一套表达规范。
 
 它集中处理五类问题：
 
@@ -33,29 +33,37 @@
 4. 读取候选句的前后文和对应摘要或结论后，再决定删除、合并或重组；
 5. 修改后复检段末句和关联层级，没有新增高优先级候选后结束。
 
-完整检索表见 [`references/long-document-retrieval.md`](skills/technical-academic-writing-zh/references/long-document-retrieval.md)。
+完整检索表见 [`references/long-document-retrieval.md`](references/long-document-retrieval.md)。
 
 ## 显式清理
 
 用户明确要求清理、精简或审校时，skill 会先完成不改变语义的确定项，再在正文之外给出清理清单。涉及数据源或方法排除时，skill 只检索当前文档及其直接引用或由用户指定为依据的材料，再判断该句是否具有技术作用。
 
-例如，有效检索范围内没有出现“既有模型”，且当前方法已经完整陈述时，“计算未采用既有模型结果”属于孤立排除项，应直接删除。模型记忆、普通对话内容和项目目录中未与当前文档直接关联的文件不能用于补建其技术背景。判断与回执格式见 [`references/cleanup-review.md`](skills/technical-academic-writing-zh/references/cleanup-review.md)。
+例如，有效检索范围内没有出现“既有模型”，且当前方法已经完整陈述时，“计算未采用既有模型结果”属于孤立排除项，应直接删除。模型记忆、普通对话内容和项目目录中未与当前文档直接关联的文件不能用于补建其技术背景。判断与回执格式见 [`references/cleanup-review.md`](references/cleanup-review.md)。
 
 ## 安装
+
+仓库根目录就是 skill 根目录。目录名必须保持为 `technical-academic-writing-zh`。
 
 在 Codex 中调用内置的 `$skill-installer`：
 
 ```text
-$skill-installer install the skill from https://github.com/FreeFallingSnow/technical-academic-writing-zh/tree/main/skills/technical-academic-writing-zh
+$skill-installer install the skill at path . from https://github.com/FreeFallingSnow/technical-academic-writing-zh and name it technical-academic-writing-zh
 ```
 
-也可以手动将 [`skills/technical-academic-writing-zh`](skills/technical-academic-writing-zh) 复制到：
+也可以将整个仓库克隆到 Codex 或 Cursor 共用的个人 skill 目录：
 
-```text
-~/.agents/skills/technical-academic-writing-zh
+```bash
+git clone https://github.com/FreeFallingSnow/technical-academic-writing-zh.git ~/.agents/skills/technical-academic-writing-zh
 ```
 
-如果 Codex 没有检测到新 skill，请重启 Codex。
+Claude Code 使用以下目录：
+
+```bash
+git clone https://github.com/FreeFallingSnow/technical-academic-writing-zh.git ~/.claude/skills/technical-academic-writing-zh
+```
+
+其他支持 Agent Skills 的客户端可以将仓库放入其 skill 搜索目录。客户端是否支持 GitHub 一键安装及自动发现，由各自的安装器决定。
 
 ## 使用
 
@@ -157,28 +165,18 @@ $technical-academic-writing-zh 检查全文的重复限定、跨层级复述、�
 
 拆分主要判断，并保持条件、现象、结果和后续判断的顺序。
 
-## 验证
-
-`SKILL.md` 已通过 Codex `skill-creator` 附带的 `quick_validate.py` 结构校验。
-
-[`evals/cases.yaml`](evals/cases.yaml) 收录通用测试输入、精确预期输出、禁用表达和必须保持的语义，用于回归评估。
-
 ## 目录结构
 
 ```text
 .
+├── SKILL.md
 ├── README.md
 ├── LICENSE
-├── evals/
-│   └── cases.yaml
-└── skills/
-    └── technical-academic-writing-zh/
-        ├── SKILL.md
-        ├── agents/
-        │   └── openai.yaml
-        └── references/
-            ├── cleanup-review.md
-            └── long-document-retrieval.md
+├── agents/
+│   └── openai.yaml
+└── references/
+    ├── cleanup-review.md
+    └── long-document-retrieval.md
 ```
 
 ## 许可证
