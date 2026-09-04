@@ -140,23 +140,55 @@ cases:
       - 根据本次修改要求
       - 已由估算值改为测量值
 
-  - id: ambiguous-source-exclusion-needs-confirmation
-    focus: 数据源排除含义不明时不得自动删除
+  - id: orphan-source-exclusion-safe-removal
+    focus: 全文无关联的数据源排除项直接删除
     task: 清理以下文本，并给出清理清单和待确认项
-    input: >-
-      参数 A 采用测量值。计算未采用既有模型结果。
+    input:
+      body: 参数 A 采用测量值。计算未采用既有模型结果。
+      other_document_mentions: []
+      available_reference_mentions: []
     expected_output:
-      cleaned_text: 参数 A 采用测量值。计算未采用既有模型结果。
+      cleaned_text: 参数 A 采用测量值。
+      cleanup_summary:
+        - 删除全文及引用材料均无关联的孤立数据源排除项
+      confirmation_items: []
+    must_not_contain_in_cleaned_text:
+      - 未采用既有模型结果
+
+  - id: referenced-source-exclusion-is-method-boundary
+    focus: 被排除对象具有其他技术作用时保留方法边界
+    task: 清理以下正文，并给出清理清单和待确认项
+    input:
+      body: 参数 A 采用测量值。计算未采用附录 B 的模型结果。
+      appendix_b: 附录 B 给出模型结果，用于与测量值比较。
+    expected_output:
+      cleaned_text: 参数 A 采用测量值。附录 B 的模型结果仅用于比较，不作为参数 A 的计算输入。
+      cleanup_summary:
+        - 将笼统的排除句改为模型结果用途和边界的直接表述
+      confirmation_items: []
+    must_preserve:
+      - 模型结果仅用于比较
+      - 模型结果不作为计算输入
+
+  - id: unavailable-reference-source-exclusion-needs-confirmation
+    focus: 关键引用材料不可访问时保留并待确认
+    task: 清理以下正文，并给出清理清单和待确认项
+    input:
+      body: 参数 A 采用测量值。计算未采用《模型说明》中的结果。
+      unavailable_references:
+        - 模型说明
+    expected_output:
+      cleaned_text: 参数 A 采用测量值。计算未采用《模型说明》中的结果。
       cleanup_summary: []
       confirmation_items:
-        - sentence: 计算未采用既有模型结果。
-          reason: 该句可能构成独立的数据源排除条件
+        - sentence: 计算未采用《模型说明》中的结果。
+          reason: 关键引用材料不可访问，无法判断该排除句是否构成方法边界
           options:
-            - 作为当前方法边界保留
-            - 移至变更记录
-            - 确认为无技术含义后删除
+            - 提供引用材料后继续判断
+            - 确认该句仅为修订记录后删除
+            - 确认该句为当前方法边界后保留
     must_preserve:
-      - 未采用既有模型结果
+      - 在确认前保留对《模型说明》结果的排除陈述
 
   - id: explicit-cleanup-report-separation
     focus: 清理回执不得混入正文

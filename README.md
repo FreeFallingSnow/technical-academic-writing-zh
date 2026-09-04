@@ -37,9 +37,9 @@
 
 ## 显式清理
 
-用户明确要求清理、精简或审校时，skill 会先完成不改变语义的确定项，再在正文之外给出清理清单。可能承载数据源排除、方法边界、适用范围、阴性结果或安全限制的句子会保持原样，并列入待确认项。
+用户明确要求清理、精简或审校时，skill 会先完成不改变语义的确定项，再在正文之外给出清理清单。涉及数据源或方法排除时，skill 会检索全文、附件和当前可访问的引用材料，再判断该句是否具有技术作用。
 
-例如，“参数 A 采用测量值”不能证明“模型结果未参与计算”。遇到这类排除性陈述时，skill 不会因为句子位于段末或命中可疑词就直接删除。判断与回执格式见 [`references/cleanup-review.md`](skills/technical-academic-writing-zh/references/cleanup-review.md)。
+例如，全文和引用材料均未出现“既有模型”，且当前方法已经完整陈述时，“计算未采用既有模型结果”属于孤立排除项，应直接删除。被排除对象在其他位置承担输入、比较或验证作用时，才进一步判断该句是否构成方法边界。判断与回执格式见 [`references/cleanup-review.md`](skills/technical-academic-writing-zh/references/cleanup-review.md)。
 
 ## 安装
 
