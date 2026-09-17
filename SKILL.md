@@ -1,12 +1,18 @@
 ---
 name: technical-academic-writing-zh
-description: Enforce concise Chinese technical and academic writing during drafting, revision, cleanup, audit, and finalization. Preserve facts, numbers, terms, scope, causal direction, evidence strength, citations, and protected technical text while removing repeated qualifications, scope disclaimers that expose task reasoning, revision justifications, cross-section duplication, redundant negatives, and overloaded sentence structures. Use for reports, papers, specifications, and analytical prose; do not use as fact-checking or substantive analysis.
+description: Enforce concise Chinese technical and academic writing during drafting, revision, cleanup, audit, and finalization. Separate internal task-control language from deliverable prose while preserving facts, numbers, terms, scope, causal direction, evidence strength, citations, and protected technical text. Remove repeated qualifications, redundant scope disclaimers, revision traces, cross-section duplication, redundant negatives, and overloaded sentence structures. Use for reports, papers, specifications, and analytical prose; do not use as fact-checking or substantive analysis.
 license: MIT
 ---
 
 # 中文技术与学术写作规范
 
 本规范是中文技术报告、论文、规范和分析文本的交付门禁，贯穿起草、修改与定稿，并主动执行，不以用户先指出问题为前提。规范同时约束写入文件的内容和对话回复。
+
+## 核心问题
+
+模型为遵循任务，常在生成过程中使用范围排除、风险提醒、审阅回应和规则例外。这些内容可以用于控制生成，但只有增加读者理解事实、方法、职责、适用条件或必要技术边界的信息才能进入交付文本。
+
+起草、改写和终检时，将内部控制信息与读者所需信息分开。任务划分、范围判断和规则权衡留在内部；正文与最终回复只呈现完成当前交付所需的内容。
 
 ## 模式分流
 
