@@ -1,12 +1,12 @@
 ---
 name: technical-academic-writing-zh
-description: Enforce concise Chinese technical and academic writing during drafting, revision, cleanup, audit, and finalization. Preserve facts, numbers, terms, scope, causal direction, evidence strength, citations, and protected technical text while removing repeated qualifications, cross-section duplication, revision traces, redundant negatives, and overloaded sentence structures. Use for reports, papers, specifications, and analytical prose; do not use as fact-checking or substantive analysis.
+description: Enforce concise Chinese technical and academic writing during drafting, revision, cleanup, audit, and finalization. Preserve facts, numbers, terms, scope, causal direction, evidence strength, citations, and protected technical text while removing repeated qualifications, scope disclaimers that expose task reasoning, revision justifications, cross-section duplication, redundant negatives, and overloaded sentence structures. Use for reports, papers, specifications, and analytical prose; do not use as fact-checking or substantive analysis.
 license: MIT
 ---
 
 # 中文技术与学术写作规范
 
-本规范是中文技术报告、论文、规范和分析文本的交付门禁，贯穿起草、修改与定稿。规范同时约束写入文件的内容和对话中直接交付的正文。
+本规范是中文技术报告、论文、规范和分析文本的交付门禁，贯穿起草、修改与定稿，并主动执行，不以用户先指出问题为前提。规范同时约束写入文件的内容和对话回复。
 
 ## 模式分流
 
@@ -51,9 +51,9 @@ license: MIT
 
 1. 确定模式、修改范围、文种和用户指定的依据材料。
 2. 建立语义保护记录，并标出受保护内容。
-3. 短文本检查每句话和分句；长文按长文检索规则建立候选集合。
-4. 对待处理内容执行保留测试。
-5. 删除无独立作用的内容，重组保留但难读的内容。
+3. 短文本检查每句话和分句，包括新生成的范围句、解释句和回复说明；长文按长文检索规则建立候选集合。
+4. 对待处理内容执行保留测试。遇到范围或排除句时，先判断边界能否由研究对象、系统职责、输入输出、方法用途或适用条件直接表达，再判断独立保留是否影响复现、解释、安全或责任。
+5. 删除不增加读者所需信息的内容；能够直接表达的边界并入相应事实、职责、用途或条件；保留但难读的内容进行重组。
 6. 对同一句群集中出现的多个问题，按最终信息顺序重写句群，不做逐词替换。
 7. 将修改稿与语义保护记录逐项比较，并复查修改位置的上下文。
 
@@ -65,7 +65,7 @@ license: MIT
 - 给出影响安全、责任、复现或适用性的必要限制；
 - 承担标题、段落主题、定义、引用或必要衔接等明确结构功能。
 
-只重复相邻内容、换用近义词复述、再次解释已经表达的不确定性、记录修改过程或评价写作效果的内容不予保留。
+只重复相邻内容、换用近义词复述、再次解释已经表达的不确定性，或者只暴露任务划分、范围判断、防止误解的考虑、审阅回应、写作理由、修改过程和规则权衡的内容不予保留。
 
 ## 写作规则
 
@@ -73,13 +73,17 @@ license: MIT
 
 用“可能、提示、支持、表明、证明”等词准确表达判断强度。前文已经表达不确定性时，删除随后对同一判断的同义限制；后文增加具体适用条件、样本范围或方法边界时保留。
 
-### 范围写入对应判断
+### 范围通过对象、职责、用途和条件表达
 
-把范围放入观察结果或结论，例如写“在本次检查范围内未发现异常”。保留必要的范围，不在后文重复解释未覆盖范围。
+优先通过研究对象、系统职责、输入输出、方法用途和适用条件直接表达范围。例如写“在本次检查范围内未发现异常”，或者分别说明两个系统承担的职责。上述信息已经形成完整边界时，删除随后追加的“本研究不涉及……”“不属于本课题范围”等同义排除声明。
 
-### 正文只呈现最终内容
+排除关系影响计算输入、方法复现、结果解释、安全、责任或适用条件时，保留其技术含义。能够并入用途或条件的，改为直接说明对象的作用和边界；不能由正面叙述替代的独立限制才单独保留。否定词本身不是删除理由。
 
-正文直接陈述最终有效的事实、方法、范围和结论。审阅意见、删改过程和完成情况写入独立的修订说明、审稿回复或变更记录。
+### 正文与回复只呈现当前交付所需内容
+
+正文直接陈述最终有效的事实、方法、范围和结论。任务划分、作者如何判断范围、防止误解的考虑、审阅回应、写作理由、删改过程和完成情况不进入正式正文；修订说明、审稿回复或变更记录本身就是交付物时，按相应文种保留必要过程信息。
+
+对话回复直接说明具体问题、处理结果和理解修改所必需的依据。不主动追加“规则并不禁止……”“必要时仍可……”等与当前处理无关的例外，也不为已经删除或改写的表达辩护。用户询问判断理由时，说明文本中的事实关系和修改影响，不展示内部规则权衡过程。
 
 ### 一个信息设置一个主要落点
 
@@ -95,13 +99,13 @@ license: MIT
 
 ## 终检门禁
 
-交付前逐项确认：
+交付前，对拟交付文档和本轮对话回复逐项确认：
 
 1. 规定范围内的待处理内容已经完成相应检查；
 2. 每个判断只使用一次必要的证据强度限定；
-3. 范围已经写入对应事实或结论，没有同义追加；
+3. 范围已经通过对象、职责、输入输出、用途或条件直接表达，没有追加同义排除声明；
 4. 同一信息没有在相邻位置或不同层级完整复述；
-5. 正文没有混入写作、审阅或修改过程；
+5. 正文和回复没有混入任务划分、范围判断、防止误解的考虑、审阅回应、写作理由、修改过程或无关的规则辩护；
 6. 每句话的主体、动作、对象和逻辑关系清楚；
 7. 受保护内容以及事实、数字、术语、条件、顺序、因果、引用和证据强度与输入一致；
 8. 修改没有超出用户指定范围，也没有引入输入之外的内容。
@@ -114,4 +118,5 @@ license: MIT
 - 用户要求编辑文件时，保持标题层级、编号、图表题注、交叉引用和未涉及内容。
 - 清理模式按清理参考文件输出正文、清理清单和待确认项。
 - 仅检查模式不改动原文，也不宣称检查了实际范围之外的内容。
+- 回复修改结果时，只说明具体问题、处理动作和必要依据，不复述内部检查规则，不追加与本次决定无关的例外。
 - 存在歧义时，先交付已经完成确定项处理的结果，再列出需要用户判断的具体问题。
